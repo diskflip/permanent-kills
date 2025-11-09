@@ -4,16 +4,18 @@ import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 
-@ConfigGroup("example")
+@ConfigGroup("permanentdeath")
 public interface PermanentDeathConfig extends Config
 {
 	@ConfigItem(
-		keyName = "greeting",
-		name = "Welcome Greeting",
-		description = "The message to show to the user when they login"
+		keyName = "pluginEnabled",
+		name = "Enable Plugin",
+		description = "Enable single deaths on NPCs.",
+        position = 1
 	)
-	default String greeting()
-	{
-		return "Hello";
-	}
+	default boolean pluginEnabled()
+    {
+        return true;
+    }
+
 }
