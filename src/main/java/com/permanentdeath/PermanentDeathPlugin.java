@@ -76,9 +76,27 @@ public class PermanentDeathPlugin extends Plugin
 
         if (renderable instanceof NPC)
         {
-            return false;
-        }
+            NPC npc = (NPC) renderable;
 
+            boolean isAttackable = false;
+            String[] actions = npc.getComposition().getActions();
+
+            if (actions != null)
+            {
+                for (String action : actions)
+                {
+                    if (action != null && action.equals("Attack"))
+                    {
+                        isAttackable = true;
+                        break;
+                    }
+                }
+            }
+            if (isAttackable)
+            {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -118,7 +136,7 @@ public class PermanentDeathPlugin extends Plugin
 		configManager.setConfiguration(CONFIG_GROUP, EXTINCT_KEY, json);
 	}
 
-	private void loadData() 
+	private void loadData()
 	{
 		String json = configManager.getConfiguration(CONFIG_GROUP, EXTINCT_KEY);
 		if (json != null)
